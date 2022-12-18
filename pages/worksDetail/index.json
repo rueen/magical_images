@@ -1,0 +1,7 @@
+{
+  "navigationBarBackgroundColor": "#FEF2DB",
+  "navigationBarTitleText": "我的作品",
+  "usingComponents": {
+    "icon": "/components/icon/index"
+  }
+}

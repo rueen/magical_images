@@ -1,0 +1,2 @@
+/* components/icon/index.wxss */
+@import '/style/iconfont.wxss';

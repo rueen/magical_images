@@ -1,0 +1,6 @@
+<!--components/nav/index.wxml-->
+<view class="container" style="padding-top: {{statusBarHeight}}px;">
+  <view class="titleWrap" style="height: {{height}}px;">
+    <text class="title">{{title}}</text>
+  </view>
+</view>

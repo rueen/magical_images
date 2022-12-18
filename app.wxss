@@ -1,0 +1,15 @@
+/**app.wxss**/
+@import 'style/iconfont.wxss';
+button{
+  height: 76rpx;
+  line-height: 76rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  border-radius: 24rpx;
+}
+button::after{
+  border: none;
+}
+button[type=primary]{
+  background: #ED7447;
+}

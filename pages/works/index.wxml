@@ -1,0 +1,15 @@
+<!--pages/works/index.wxml-->
+<nav></nav>
+<view class="container" style="min-height: {{minHeight}}px;">
+  <view class="worksTitle">我的作品</view>
+  <view class="worksList">
+    <view class="worksItem" wx:for="{{[1,2,3,4,5,6,7,8]}}" wx:key="index" bindtap="openDetail">
+      <view class="worksInner">
+        <view class="thumbnailBox">
+          <image mode="aspectFill" src="https://wenxin.baidu.com/younger/file/selected/C23AE339CDDF0A763D7448F4DDAEF4DE?style=i_s" class="thumbnail"></image>
+        </view>
+        <view class="desc">2022-12-17</view>
+      </view>
+    </view>
+  </view>
+</view>

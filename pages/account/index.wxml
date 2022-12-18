@@ -1,0 +1,22 @@
+<!--pages/account/index.wxml-->
+<nav></nav>
+<view class="container" style="min-height: {{minHeight}}px;">
+  <view class="userInfo">
+    <button class="avatarWrap" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+      <image class="avatar" src="{{avatarUrl}}" mode="cover"></image>
+    </button>
+    <view class="nicknameWrap">
+      <view class="nickname" wx:if="{{!isEditNickname}}" bindtap="handleEditNickname">
+        <text class="nicknameText">{{nickname}}</text>
+        <icon name="edit" size="30rpx" color="#999" />
+      </view>
+      <input type="nickname" class="weui-input" placeholder="请输入昵称" bindblur="nicknameOnBlur" wx:if="{{isEditNickname}}"/>
+      <view class="nicknameDesc">微信用户</view>
+    </view>
+  </view>
+  <view class="times">
+    <view class="timesText1">剩余可创作数：2</view>
+    <view class="timesText2">分享一张AI绘图可增加3次创作机会</view>
+    <button class="shareBtn" type="primary" open-type="share">立即分享</button>
+  </view>
+</view>

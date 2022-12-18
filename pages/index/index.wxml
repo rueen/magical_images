@@ -1,0 +1,80 @@
+<!--index.wxml-->
+<nav></nav>
+<view class="drawContainer">
+  <view class="drawBg">
+    <view class="drawBgItem drawBgItem1"></view>
+    <view class="drawBgItem drawBgItem2"></view>
+  </view>
+  <view class="drawContent">
+    <view class="drawTab">
+      <view class="drawTabItem drawTabItem1 {{tapType === 'ai' ? 'active' : ''}}" bindtap="switchTap" data-type="ai">AI绘画打卡</view>
+      <view class="drawTabItem drawTabItem2 {{tapType === 'comic' ? 'active' : ''}}" bindtap="switchTap" data-type="comic">动漫人像</view>
+    </view>
+    <view class="drawPreviewWrap">
+      <image src="https://c-ssl.duitang.com/uploads/blog/201401/09/20140109192151_W3xrG.jpeg" mode="aspectFill" class="drawPreview" ></image>
+      <view class="drawPreviewText">
+        <view class="drawPreviewText1">效果示例</view>
+        <view class="drawPreviewText2">上传你的照片随心打卡</view>
+      </view>
+    </view>
+    <view class="drawUploadBtn">
+      <icon name="upload" size="32rpx" color="#fff" />
+      <text class="drawUploadBtnText">上传素材</text>
+    </view>
+  </view>
+</view>
+<view class="container">
+  <view class="line"></view>
+  <view class="locationWrap" wx:if="{{tapType === 'ai'}}">
+    <view class="choiceTitleWrap">
+      <icon name="works" size="32rpx" color="#585FCC" />
+      <text class="choiceTitle">选择地点</text>
+    </view>
+    <view class="locationList">
+      <view class="locationItem active">
+        <icon name="beach" size="32rpx" color="{{location === 'beach' ? '#F5F5F5' : '#585FCC'}}" />
+        <text class="locationText">海滩</text>
+      </view>
+      <view class="locationItem">
+        <icon name="woods" size="32rpx" color="{{location === 'woods' ? '#F5F5F5' : '#585FCC'}}" />
+        <text class="locationText">山林</text>
+      </view>
+      <view class="locationItem">
+        <icon name="canyon" size="32rpx" color="{{location === 'canyon' ? '#F5F5F5' : '#585FCC'}}" />
+        <text class="locationText">峡谷</text>
+      </view>
+      <view class="locationItem">
+        <icon name="city" size="32rpx" color="{{location === 'city' ? '#F5F5F5' : '#585FCC'}}" />
+        <text class="locationText">城市</text>
+      </view>
+      <view class="locationItem">
+        <icon name="village" size="32rpx" color="{{location === 'village' ? '#F5F5F5' : '#585FCC'}}" />
+        <text class="locationText">乡村</text>
+      </view>
+    </view>
+  </view>
+  <view class="styleWrap" wx:if="{{tapType === 'ai'}}">
+    <view class="choiceTitleWrap">
+      <icon name="works" size="32rpx" color="#585FCC" />
+      <text class="choiceTitle">选择画风</text>
+    </view>
+    <scroll-view scroll-x="true">
+      <view class="styleList" style="width: {{166*6 + 'rpx'}};">
+        <view class="styleItemWrap active">
+          <view class="styleItem defaultItem">
+            <text class="styleItemDesc">随机</text>
+          </view>
+        </view>
+        <view class="styleItemWrap" wx:for="{{[1,2,3,4,5]}}" wx:key="index">
+          <view class="styleItem">
+            <view class="styleItemBgWrap">
+              <image src="https://c-ssl.duitang.com/uploads/blog/201401/09/20140109192151_W3xrG.jpeg" mode="aspectFill" class="styleItemBg"></image>
+            </view>
+            <view class="styleItemDesc">水彩</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class="drawBtn">AI一键作画</view>
+</view>

@@ -1,0 +1,55 @@
+@font-face {
+    font-family: 'icon';  /* Project id 3830435 */
+    src: url('//at.alicdn.com/t/c/font_3830435_tzach2gu6ap.woff2?t=1671331687683') format('woff2'),
+         url('//at.alicdn.com/t/c/font_3830435_tzach2gu6ap.woff?t=1671331687683') format('woff'),
+         url('//at.alicdn.com/t/c/font_3830435_tzach2gu6ap.ttf?t=1671331687683') format('truetype');
+  }
+
+  .icon {
+    font-family: "icon" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .icon-edit:before {
+    content: "\e7e1";
+  }
+  
+  .icon-upload:before {
+    content: "\e608";
+  }
+  
+  .icon-works:before {
+    content: "\e600";
+  }
+  
+  .icon-village:before {
+    content: "\e601";
+  }
+  
+  .icon-canyon:before {
+    content: "\e602";
+  }
+  
+  .icon-city:before {
+    content: "\e603";
+  }
+  
+  .icon-account:before {
+    content: "\e604";
+  }
+  
+  .icon-beach:before {
+    content: "\e605";
+  }
+  
+  .icon-woods:before {
+    content: "\e606";
+  }
+  
+  .icon-draw:before {
+    content: "\e607";
+  }
+

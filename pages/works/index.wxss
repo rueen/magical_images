@@ -1,0 +1,50 @@
+/* pages/works/index.wxss */
+page{
+  background-color: #4A6BA6;
+}
+.container{
+  background-color: #fff;
+  border-radius: 56rpx 56rpx 0rpx 0rpx;
+  padding: 0 32rpx;
+  margin-top: 20rpx;
+  box-sizing: border-box;
+}
+.worksTitle{
+  color: #2A3243;
+  font-weight: 500;
+  height: 112rpx;
+  display: flex;
+  align-items: center;
+  margin-top: 12rpx;
+}
+.worksList{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.worksItem{
+  width: 328rpx;
+  background-color: #F9F9F9;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  margin-bottom: 32rpx;
+}
+.thumbnailBox{
+  width: 288rpx;
+  height: 288rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+.thumbnail{
+  width: 288rpx;
+  height: 288rpx;
+}
+.desc{
+  margin-top: 26rpx;
+  font-size: 26rpx;
+  line-height: 36rpx;
+  color: #999;
+  display: flex;
+  justify-content: flex-end;
+}
