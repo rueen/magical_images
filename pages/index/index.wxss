@@ -8,6 +8,7 @@ page{
   padding-top: 340rpx;
   padding-bottom: 80rpx;
   margin-top: 574rpx;
+  box-sizing: border-box;
 }
 .line{
   height: 2rpx;
@@ -234,6 +235,7 @@ page{
   align-items: center;
   justify-content: center;
   margin-top: 28rpx;
+  line-height: normal;
 }
 .drawUploadBtnText{
   font-size: 28rpx;

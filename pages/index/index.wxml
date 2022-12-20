@@ -11,19 +11,27 @@
       <view class="drawTabItem drawTabItem2 {{tapType === 'comic' ? 'active' : ''}}" bindtap="switchTap" data-type="comic">动漫人像</view>
     </view>
     <view class="drawPreviewWrap">
-      <image src="https://c-ssl.duitang.com/uploads/blog/201401/09/20140109192151_W3xrG.jpeg" mode="aspectFill" class="drawPreview" ></image>
+      <image src="{{previewImgUrl}}" mode="aspectFill" class="drawPreview" ></image>
       <view class="drawPreviewText">
         <view class="drawPreviewText1">效果示例</view>
         <view class="drawPreviewText2">上传你的照片随心打卡</view>
       </view>
     </view>
-    <view class="drawUploadBtn">
+    <!-- <button
+      open-type="getPhoneNumber"
+      bindgetphonenumber="getPhoneNumber"
+      class="drawUploadBtn"
+    >
       <icon name="upload" size="32rpx" color="#fff" />
       <text class="drawUploadBtnText">上传素材</text>
-    </view>
+    </button> -->
+    <div class="drawUploadBtn" bindtap="uploadImage">
+      <icon name="upload" size="32rpx" color="#fff" />
+      <text class="drawUploadBtnText">上传素材</text>
+    </div>
   </view>
 </view>
-<view class="container">
+<view class="container" style="min-height: {{minHeight}}px;">
   <view class="line"></view>
   <view class="locationWrap" wx:if="{{tapType === 'ai'}}">
     <view class="choiceTitleWrap">
@@ -76,5 +84,10 @@
       </view>
     </scroll-view>
   </view>
-  <view class="drawBtn">AI一键作画</view>
+  <button
+    loading="{{isLoading}}"
+    class="drawBtn"
+    bindtap="draw"
+    disabled="{{!previewImgUrl}}"
+  >AI一键作画</button>
 </view>
