@@ -20,3 +20,4 @@
     <button class="shareBtn" type="primary" open-type="share">立即分享</button>
   </view>
 </view>
+<shadow></shadow>

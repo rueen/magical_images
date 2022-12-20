@@ -84,10 +84,13 @@
       </view>
     </scroll-view>
   </view>
-  <button
-    loading="{{isLoading}}"
-    class="drawBtn"
-    bindtap="draw"
-    disabled="{{!previewImgUrl}}"
-  >AI一键作画</button>
+  <view class="drawBtnWrap">
+    <button
+      loading="{{isLoading}}"
+      class="drawBtn"
+      bindtap="draw"
+      disabled="{{!previewImgUrl}}"
+    >AI一键作画</button>
+  </view>
 </view>
+<shadow></shadow>

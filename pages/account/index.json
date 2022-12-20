@@ -2,6 +2,7 @@
   "navigationStyle": "custom",
   "usingComponents": {
     "nav": "/components/nav/index",
-    "icon": "/components/icon/index"
+    "icon": "/components/icon/index",
+    "shadow": "/components/shadow/index"
   }
 }

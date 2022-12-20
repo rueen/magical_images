@@ -1,6 +1,7 @@
 {
   "navigationStyle": "custom",
   "usingComponents": {
-    "nav": "/components/nav/index"
+    "nav": "/components/nav/index",
+    "shadow": "/components/shadow/index"
   }
 }
