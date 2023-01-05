@@ -1,5 +1,5 @@
 // index.js
-import { styleServer } from '../../server/index';
+import { styleServer, usersServer } from '../../server/index';
 const { globalData } = getApp();
 
 Page({
@@ -26,9 +26,16 @@ Page({
       tapType: type
     })
   },
-  getPhoneNumber(e){
-    console.log(e);
-    this.wxLogin();
+  async getPhoneNumber(e){
+    const { code } = e.detail;
+    const { success, data } = await usersServer.getPhoneNumber({
+      code
+    });
+    console.log(data)
+    if(success){
+
+    }
+    // this.wxLogin();
   },
   wxLogin() {
     return new Promise((resolve) => {

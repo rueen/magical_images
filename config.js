@@ -9,7 +9,7 @@ const config = {
         ...base
     },
     TEST: {
-        baseURL: 'http://127.0.0.1:8000/',
+        baseURL: 'http://110.40.211.150:8818',
         ...base
     }
 }

@@ -17,18 +17,18 @@
         <view class="drawPreviewText2">上传你的照片随心打卡</view>
       </view>
     </view>
-    <!-- <button
+    <button
       open-type="getPhoneNumber"
       bindgetphonenumber="getPhoneNumber"
       class="drawUploadBtn"
     >
       <icon name="upload" size="32rpx" color="#fff" />
       <text class="drawUploadBtnText">上传素材</text>
-    </button> -->
-    <div class="drawUploadBtn" bindtap="uploadImage">
+    </button>
+    <!-- <div class="drawUploadBtn" bindtap="uploadImage">
       <icon name="upload" size="32rpx" color="#fff" />
       <text class="drawUploadBtnText">上传素材</text>
-    </div>
+    </div> -->
   </view>
 </view>
 <view class="container" style="min-height: {{minHeight}}px;">
