@@ -8,7 +8,8 @@ Page({
     tapType: 'ai',
     location: 'beach',
     previewImgUrl: '../../image/demo.png',
-    isLoading: false
+    isLoading: false,
+    phoneNumber: ''
   },
   onLoad(options) {
     this.getMinHeight()
@@ -31,21 +32,30 @@ Page({
     const { success, data } = await usersServer.getPhoneNumber({
       code
     });
-    console.log(data)
     if(success){
-
+      this.setData({
+        phoneNumber: data.phoneNumber
+      }, () => {
+        this.login();
+      })
     }
-    // this.wxLogin();
   },
-  wxLogin() {
-    return new Promise((resolve) => {
-      wx.login({
-        success: res => {
-          console.log('login', res)
-          resolve(res.code);
+  login() {
+    wx.login({
+      success: async res => {
+        const { success, data } = await usersServer.login({
+          code: res.code,
+          mobile: this.data.phoneNumber
+        });
+        if(success){
+          wx.showToast({
+            title: '登录成功',
+            icon: 'success'
+          })
+          wx.setStorageSync('token', data.token);
         }
-      });
-    })
+      }
+    });
   },
   uploadImage(){
     wx.chooseMedia({

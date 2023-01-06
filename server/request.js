@@ -13,18 +13,18 @@ const request = async (
             data,
             method,
             success(res) {
-                const { returnCode, msg, data } = res.data;
-                if(`${returnCode}` === '0014'){
+                const { status, msg, data } = res.data;
+                if(`${status}` === '0014'){
                     // 需要重新授权登录
                     navigateTo({
                         router: 'Login'
                     })
-                } else if(`${returnCode}` === '200'){
+                } else if(`${status}` === '200'){
                     resolve({
                         success: true,
                         data
                     })
-                } else if(`${returnCode}` === '0011') {
+                } else if(`${status}` === '0011') {
                     if(isHideFailTips){
                         wx.showToast({
                             title: msg,
