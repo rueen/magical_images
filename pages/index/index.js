@@ -46,10 +46,11 @@ Page({
             sourceType: ['album', 'camera'],
             camera: 'back',
             success: (res) => {
-            const tempFiles = res.tempFiles[0];
-            this.setData({
-                previewImgUrl: tempFiles.tempFilePath
-            })
+                console.log(res)
+                const tempFiles = res.tempFiles[0];
+                this.setData({
+                    previewImgUrl: tempFiles.tempFilePath
+                })
             }
         })
     },
@@ -57,6 +58,8 @@ Page({
     async draw(){
         this.isLoading = true;
         const { success } = await styleServer.gan({
+            expand: 1.5,
+            size: 100,
             image: this.data.previewImgUrl
         });
         this.isLoading = false;

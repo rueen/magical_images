@@ -3,7 +3,7 @@ import request from '../request';
 const styleServer = {
   // 人物动漫生成(含人脸)
   async gan(data = {}){
-    return await request({ url: `/style/gan`, data, method: 'POST' });
+    return await request({ url: `/style/gan/`, data, method: 'POST' });
   },
 }
 
