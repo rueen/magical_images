@@ -13,14 +13,13 @@ Component({
      * 组件的初始数据
      */
     data: {
-        navbarHeight: 44 + globalData.statusBarHeight
+        navbarHeight: globalData.navBarHeight
     },
 
     lifetimes: {
         attached(){
-            const navbarHeight = globalData.isIos ? 44 : 48;
             this.setData({
-                navbarHeight: navbarHeight + globalData.statusBarHeight
+                navbarHeight: globalData.navBarHeight
             })
         }
     },

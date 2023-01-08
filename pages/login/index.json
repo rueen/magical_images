@@ -1,6 +1,7 @@
 {
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "请登录",
     "usingComponents": {
-        "nav-default": "/components/navDefault/index",
         "icon": "/components/icon/index",
         "modal": "/components/modal/index"
     }

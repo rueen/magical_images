@@ -4,14 +4,15 @@ import { navigateTo } from '../../utils/navigate';
 import config from '../../config';
 
 const app = getApp();
-const safeArea = app.globalData.safeArea || {};
+const globalData = app.globalData || {};
+const safeArea = globalData.safeArea || {};
 
 Page({
     /**
      * 页面的初始数据
      */
     data: {
-        height: `${safeArea.height}px`,
+        height: `${safeArea.height - globalData.navBarHeight}px`,
         isAgree: false,
         userInfo: null, // 存储微信用户信息
         phoneNumber: null, // 存储用户手机号

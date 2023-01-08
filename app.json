@@ -10,7 +10,6 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "幻视魔图",
-    "navigationStyle": "custom",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {

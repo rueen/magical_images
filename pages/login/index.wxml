@@ -1,6 +1,5 @@
 <!--pages/login/index.wxml-->
 <view class="container" style="height: {{height}}">
-    <nav-default title="请登录" />
     <view class="loginWrap">
         <view class="logoWrap">
             <view class="logo">
