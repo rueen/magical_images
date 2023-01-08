@@ -8,7 +8,8 @@ Page({
         minHeight: 0,
         tapType: 'ai',
         location: 'beach',
-        previewImgUrl: '../../image/demo.png',
+        previewImgUrl: null, // 预览原图
+        drawImgUrl: null, // 成品图
         isLoading: false,
         phoneNumber: '',
         isLogin: !!wx.getStorageSync('token')
@@ -46,7 +47,6 @@ Page({
             sourceType: ['album', 'camera'],
             camera: 'back',
             success: (res) => {
-                console.log(res)
                 const tempFiles = res.tempFiles[0];
                 this.setData({
                     previewImgUrl: tempFiles.tempFilePath
@@ -54,14 +54,62 @@ Page({
             }
         })
     },
+    async drawAi(){
+        const { previewImgUrl, isLoading } = this.data;
+        if(isLoading){
+            return;
+        }
+        if(!previewImgUrl){
+            wx.showModal({
+                title: '提示',
+                content: '请先上传素材',
+                success (res) {}
+            })              
+            return;
+        }
+    },
+    async drawComic(){
+        const { previewImgUrl, isLoading } = this.data;
+        if(isLoading){
+            return;
+        }
+        if(!previewImgUrl){
+            wx.showModal({
+                title: '提示',
+                content: '请先上传素材',
+                success (res) {}
+            })              
+            return;
+        }
+        const FormData = require('../../utils/formData');
+        let formData = new FormData();
+        formData.appendFile("image", previewImgUrl);
+        let params = formData.getData();
+        this.setData({
+            isLoading: true
+        })
+        const { success, data, msg } = await styleServer.gan(params);
+        if(success){
+            this.setData({
+                drawImgUrl: data.img_url
+            })
+        } else {
+            wx.showToast({
+                title: msg,
+                icon: 'none'
+            })
+        }
+        this.setData({
+            isLoading: false
+        })
+    },
     // AI一键作画
-    async draw(){
-        this.isLoading = true;
-        const { success } = await styleServer.gan({
-            expand: 1.5,
-            size: 100,
-            image: this.data.previewImgUrl
-        });
-        this.isLoading = false;
+    draw(){
+        const { tapType } = this.data;
+        if(tapType === 'ai'){
+            this.drawAi();
+        } else if(tapType === 'comic'){
+            this.drawComic();
+        }
     }
 })

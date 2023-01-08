@@ -2,7 +2,7 @@ import config from '../config';
 import { navigateTo } from '../utils/navigate';
 
 const request = async (
-    {url = '/', data = {}, method = 'GET', isShowLoading = false, isHideFailTips = true} = {}
+    {url = '/', data = {}, method = 'GET', isShowLoading = false, isHideFailTips = true, ...extra} = {}
   ) => {
     return new Promise(async (resolve, reject) => {
         if(isShowLoading){
@@ -12,6 +12,7 @@ const request = async (
             url: `${config.baseURL}${url}`,
             data,
             method,
+            ...extra,
             success(res) {
                 const { status, msg, data } = res.data;
                 if(`${status}` === '0014'){
@@ -24,14 +25,14 @@ const request = async (
                         success: true,
                         data
                     })
-                } else if(`${status}` === '0011') {
+                } else {
                     if(isHideFailTips){
                         wx.showToast({
                             title: msg,
                             icon: 'none'
                         });
                     }
-                    reject({
+                    resolve({
                         success: false,
                         msg
                     });

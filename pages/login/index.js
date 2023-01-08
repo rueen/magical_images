@@ -59,8 +59,8 @@ Page({
                 });
                 if(success){
                     wx.showToast({
-                    title: '登录成功',
-                    icon: 'success'
+                        title: '登录成功',
+                        icon: 'success'
                     })
                     wx.setStorageSync('token', data.token);
                     let rememberRouter = wx.getStorageSync('rememberRouter');
