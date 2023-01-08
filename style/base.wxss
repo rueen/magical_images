@@ -1,0 +1,29 @@
+.clamp2{
+    flex-shrink: 0;
+    font-size: 24rpx;
+    color: #333;
+    display: -webkit-box;
+    height: 72rpx;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    word-break: break-word;
+    line-height: 36rpx;	
+}
+.ui-btn{
+    color: #fff;
+    height: 56rpx;
+    border-radius: 28rpx;
+    display: flex;
+    justify-content: center;
+    font-size: 24rpx;
+    background-color: #fd9f33;
+}
+.ui-btn-big{
+    height: 80rpx;
+    border-radius: 40rpx;
+    font-size: 30rpx;
+}
+.ui-btn::after{
+    content: none;
+}

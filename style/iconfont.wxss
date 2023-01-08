@@ -1,16 +1,27 @@
 @font-face {
     font-family: 'icon';  /* Project id 3830435 */
-    src: url('//at.alicdn.com/t/c/font_3830435_tzach2gu6ap.woff2?t=1671331687683') format('woff2'),
-         url('//at.alicdn.com/t/c/font_3830435_tzach2gu6ap.woff?t=1671331687683') format('woff'),
-         url('//at.alicdn.com/t/c/font_3830435_tzach2gu6ap.ttf?t=1671331687683') format('truetype');
-  }
+    src: url('//at.alicdn.com/t/c/font_3830435_5j11hbhyg28.woff2?t=1673147221539') format('woff2'),
+       url('//at.alicdn.com/t/c/font_3830435_5j11hbhyg28.woff?t=1673147221539') format('woff'),
+       url('//at.alicdn.com/t/c/font_3830435_5j11hbhyg28.ttf?t=1673147221539') format('truetype');
+}
 
-  .icon {
+.icon {
     font-family: "icon" !important;
     font-size: 16px;
     font-style: normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+.icon-check:before {
+    content: "\e61f";
+  }
+  
+  .icon-logo-wechat:before {
+    content: "\e9e6";
+  }
+  
+  .icon-arrow-l:before {
+    content: "\e60d";
   }
   
   .icon-edit:before {
@@ -52,4 +63,3 @@
   .icon-draw:before {
     content: "\e607";
   }
-

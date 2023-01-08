@@ -1,0 +1,44 @@
+<!--pages/login/index.wxml-->
+<view class="container" style="height: {{height}}">
+    <nav-default title="请登录" />
+    <view class="loginWrap">
+        <view class="logoWrap">
+            <view class="logo">
+                <image src="../../image/logo.jpeg" mode="aspectFill" class="logoImg"></image>
+            </view>
+            <text class="logoText">幻视魔图</text>
+        </view>
+        <button class="ui-btn ui-btn-big loginBtn" bindtap="handleLogin">
+            <icon name="logo-wechat" size="46rpx" color="#fff" />
+            <text class="loginBtnText">微信账号快捷登录</text>
+        </button>
+    </view>
+</view>
+<view class="agreementWrap">
+    <text bindtap="openProtocolPage">《注册协议》</text>
+    <text class="and">和</text>
+    <text bindtap="openPolicyPage">《隐私政策》</text>
+</view>
+<modal title="注册协议" id="modal" height="800rpx">
+    <view class="modal-content">
+        <view class="richText">
+            <rich-text nodes="{{protocolContent}}"></rich-text>
+        </view>
+    </view>
+    <view class="modal-btnWrap">
+        <view class="modal-agreementWrap" bindtap="checkboxChange">
+            <view class="checkbox">
+                <icon wx:if="{{isAgree}}" name="check" size="30rpx" color="#fd9f33" />
+            </view>
+            <text class="modal-agreementText">我已阅读并同意以上协议</text>
+        </view>
+        <button
+            class="ui-btn ui-btn-big modal-btn"
+            disabled="{{!isAgree}}"
+            open-type="getPhoneNumber"
+            bindgetphonenumber="getPhoneNumber"
+        >
+            <text class="loginBtnText">下一步</text>
+        </button>
+    </view>
+</modal>

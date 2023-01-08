@@ -1,0 +1,7 @@
+{
+    "usingComponents": {
+        "nav-default": "/components/navDefault/index",
+        "icon": "/components/icon/index",
+        "modal": "/components/modal/index"
+    }
+}

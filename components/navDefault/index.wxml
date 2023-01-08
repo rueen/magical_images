@@ -1,0 +1,10 @@
+<!--components/nav/index.wxml-->
+
+<view style="height: {{navbarHeight}}px; padding-top: {{statusBarHeight}}px; background: {{background}}" class="container">
+    <view class="left">
+        <block wx:if="{{isGoBack}}">
+            <icon name="arrow-l" size="40rpx" color="#333" bindtap="goBack" />
+        </block>
+    </view>
+    <view class="title">{{title}}</view>
+</view>

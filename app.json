@@ -3,12 +3,14 @@
     "pages/index/index",
     "pages/account/index",
     "pages/works/index",
-    "pages/worksDetail/index"
+    "pages/worksDetail/index",
+    "pages/login/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
+    "navigationBarTitleText": "幻视魔图",
+    "navigationStyle": "custom",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {

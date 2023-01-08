@@ -17,18 +17,14 @@
         <view class="drawPreviewText2">上传你的照片随心打卡</view>
       </view>
     </view>
-    <button
-      open-type="getPhoneNumber"
-      bindgetphonenumber="getPhoneNumber"
-      class="drawUploadBtn"
-    >
+    <div class="drawUploadBtn" bindtap="uploadImage" wx:if="{{isLogin}}">
       <icon name="upload" size="32rpx" color="#fff" />
       <text class="drawUploadBtnText">上传素材</text>
-    </button>
-    <!-- <div class="drawUploadBtn" bindtap="uploadImage">
+    </div>
+    <div class="drawUploadBtn" bindtap="login" wx:else>
       <icon name="upload" size="32rpx" color="#fff" />
       <text class="drawUploadBtnText">上传素材</text>
-    </div> -->
+    </div>
   </view>
 </view>
 <view class="container" style="min-height: {{minHeight}}px;">

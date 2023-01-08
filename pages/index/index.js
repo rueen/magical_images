@@ -1,82 +1,64 @@
 // index.js
-import { styleServer, usersServer } from '../../server/index';
+import { styleServer } from '../../server/index';
 const { globalData } = getApp();
+import { navigateTo } from '../../utils/navigate';
 
 Page({
-  data: {
-    minHeight: 0,
-    tapType: 'ai',
-    location: 'beach',
-    previewImgUrl: '../../image/demo.png',
-    isLoading: false,
-    phoneNumber: ''
-  },
-  onLoad(options) {
-    this.getMinHeight()
-  },
-  getMinHeight(){
-    const windowHeight = globalData.windowHeight;
-    const navBarHeight = globalData.navBarHeight;
-    this.setData({
-      minHeight: windowHeight - 574/2 - navBarHeight
-    })
-  },
-  switchTap(e){
-    const { currentTarget: { dataset: { type } } } = e;
-    this.setData({
-      tapType: type
-    })
-  },
-  async getPhoneNumber(e){
-    const { code } = e.detail;
-    const { success, data } = await usersServer.getPhoneNumber({
-      code
-    });
-    if(success){
-      this.setData({
-        phoneNumber: data.phoneNumber
-      }, () => {
-        this.login();
-      })
-    }
-  },
-  login() {
-    wx.login({
-      success: async res => {
-        const { success, data } = await usersServer.login({
-          code: res.code,
-          mobile: this.data.phoneNumber
-        });
-        if(success){
-          wx.showToast({
-            title: '登录成功',
-            icon: 'success'
-          })
-          wx.setStorageSync('token', data.token);
-        }
-      }
-    });
-  },
-  uploadImage(){
-    wx.chooseMedia({
-      count: 1,
-      mediaType: ['image'],
-      sourceType: ['album', 'camera'],
-      camera: 'back',
-      success: (res) => {
-        const tempFiles = res.tempFiles[0];
+    data: {
+        minHeight: 0,
+        tapType: 'ai',
+        location: 'beach',
+        previewImgUrl: '../../image/demo.png',
+        isLoading: false,
+        phoneNumber: '',
+        isLogin: !!wx.getStorageSync('token')
+    },
+    onLoad(options) {
+        this.getMinHeight()
+    },
+    onShow() {
         this.setData({
-          previewImgUrl: tempFiles.tempFilePath
+            isLogin: !!wx.getStorageSync('token')
         })
-      }
-    })
-  },
-  // AI一键作画
-  async draw(){
-    this.isLoading = true;
-    const { success } = await styleServer.gan({
-      image: this.data.previewImgUrl
-    });
-    this.isLoading = false;
-  }
+    },
+    getMinHeight(){
+        const windowHeight = globalData.windowHeight;
+        const navBarHeight = globalData.navBarHeight;
+        this.setData({
+            minHeight: windowHeight - 574/2 - navBarHeight
+        })
+    },
+    switchTap(e){
+        const { currentTarget: { dataset: { type } } } = e;
+        this.setData({
+            tapType: type
+        })
+    },
+    login(){
+        navigateTo({
+            router: 'Login'
+        })
+    },
+    uploadImage(){
+        wx.chooseMedia({
+            count: 1,
+            mediaType: ['image'],
+            sourceType: ['album', 'camera'],
+            camera: 'back',
+            success: (res) => {
+            const tempFiles = res.tempFiles[0];
+            this.setData({
+                previewImgUrl: tempFiles.tempFilePath
+            })
+            }
+        })
+    },
+    // AI一键作画
+    async draw(){
+        this.isLoading = true;
+        const { success } = await styleServer.gan({
+            image: this.data.previewImgUrl
+        });
+        this.isLoading = false;
+    }
 })
