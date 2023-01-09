@@ -1,4 +1,0 @@
-<!--components/layout/index.wxml-->
-<view style="padding-top: {{navbarHeight}}px">
-    <slot></slot>
-</view>

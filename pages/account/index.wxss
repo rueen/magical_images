@@ -39,10 +39,7 @@ page{
   height: 48rpx;
   line-height: 48rpx;
   display: flex;
-  align-items: flex-start;
-}
-.nicknameText{
-    margin-right: 10rpx;
+  align-items: center;
 }
 .nicknameDesc{
   font-size: 24rpx;
@@ -78,4 +75,30 @@ page{
 .shareBtn{
   margin-top: 20rpx;
   width: 424rpx;
+}
+.nicknameInputWrap{
+    display: flex;
+    align-items: center;
+}
+.nicknameInput{
+    font-size: 24rpx;
+    background-color: #f1f1f1;
+    width: 400rpx;
+    height: 48rpx;
+    padding: 0 10rpx;
+    box-sizing: border-box;
+}
+.editBtn{
+    width: 48rpx;
+    height: 48rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.checkBtn{
+    width: 60rpx;
+    height: 60rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

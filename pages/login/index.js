@@ -1,7 +1,6 @@
 // pages/login/index.js
 import { usersServer } from '../../server/index';
 import { navigateTo } from '../../utils/navigate';
-import config from '../../config';
 
 const app = getApp();
 const globalData = app.globalData || {};
@@ -23,7 +22,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
+        this.getProtocol()
     },
     handleLogin(){
         this.modal = this.selectComponent("#modal");
@@ -63,7 +62,7 @@ Page({
                         title: '登录成功',
                         icon: 'success'
                     })
-                    wx.setStorageSync('token', data.token);
+                    wx.setStorageSync('openid', data.openid);
                     let rememberRouter = wx.getStorageSync('rememberRouter');
                     app.pages.get(rememberRouter) && app.pages.get(rememberRouter).refresh();
                     // 原路返回
@@ -72,5 +71,27 @@ Page({
                 }
             }
         });
-    },    
+    },
+    // 打开注册协议
+    async openProtocolPage(){
+        navigateTo({
+            router: 'Protocol'
+        })
+    },
+    // 打开隐私政策页面
+    async openPolicyPage(){
+        navigateTo({
+            router: 'Policy'
+        })
+    },
+    // 获取注册协议
+    async getProtocol(){
+        const { success, data } = await usersServer.agreement();
+
+        if(success && data){
+            this.setData({
+                protocolContent: data.register
+            })  
+        }
+    }   
 })

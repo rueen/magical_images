@@ -2,16 +2,30 @@
 <nav></nav>
 <view class="container" style="min-height: {{minHeight}}px;">
   <view class="userInfo">
-    <button class="avatarWrap" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
-      <image class="avatar" src="{{avatarUrl}}" mode="cover"></image>
+    <button class="avatarWrap" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar" wx:if="{{isLogin}}">
+      <image class="avatar" src="{{userInfo.avatar_url || '../../image/default_avatar.png'}}" mode="cover"></image>
     </button>
-    <view class="nicknameWrap">
+    <view class="avatarWrap" bindtap="login" wx:else>
+      <image class="avatar" src="{{userInfo.avatar_url || '../../image/default_avatar.png'}}" mode="cover"></image>
+    </view>
+    <view class="nicknameWrap" wx:if="{{isLogin}}">
       <view class="nickname" wx:if="{{!isEditNickname}}" bindtap="handleEditNickname">
-        <text class="nicknameText">{{nickname}}</text>
-        <icon name="edit" size="30rpx" color="#999" />
+        <text class="nicknameText">{{userInfo.nick_name || '微信用户'}}</text>
+        <view class="editBtn">
+            <icon name="edit" size="30rpx" color="#999" />
+        </view>
       </view>
-      <input type="nickname" class="weui-input" placeholder="请输入昵称" bindblur="nicknameOnBlur" wx:if="{{isEditNickname}}"/>
+      <view class="nicknameInputWrap" wx:if="{{isEditNickname}}">
+        <input type="nickname" class="nicknameInput" placeholder="请输入昵称" bindblur="nicknameOnBlur"/>
+        <view class="checkBtn" bindtap="nicknameOnBlur">
+            <icon name="check" size="30rpx" color="#666" />
+        </view>
+      </view>
       <view class="nicknameDesc">微信用户</view>
+    </view>
+    <view class="nicknameWrap" bindtap="login" wx:else>
+        <view class="nickname">请登录</view>
+        <view class="nicknameDesc">微信用户</view>
     </view>
   </view>
   <view class="times">

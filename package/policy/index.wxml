@@ -1,0 +1,4 @@
+<!--package/policy/index.wxml-->
+<view class="container">
+    <rich-text nodes="{{content}}"></rich-text>
+</view>

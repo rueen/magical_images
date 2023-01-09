@@ -1,5 +1,5 @@
 // index.js
-import { styleServer } from '../../server/index';
+import { styleServer, aigcServer } from '../../server/index';
 const { globalData } = getApp();
 import { navigateTo } from '../../utils/navigate';
 
@@ -7,19 +7,27 @@ Page({
     data: {
         minHeight: 0,
         tapType: 'ai',
-        location: 'beach',
         previewImgUrl: null, // 预览原图
         drawImgUrl: null, // 成品图
         isLoading: false,
         phoneNumber: '',
-        isLogin: !!wx.getStorageSync('token')
+        isLogin: !!wx.getStorageSync('openid'),
+        placeList: [],
+        activePlace: null,
+        styleList: [],
+        activeStyle: null
     },
     onLoad(options) {
         this.getMinHeight()
     },
     onShow() {
         this.setData({
-            isLogin: !!wx.getStorageSync('token')
+            isLogin: !!wx.getStorageSync('openid')
+        }, () => {
+            if(this.data.isLogin){
+                this.getPlace();
+                this.getStyle();
+            }
         })
     },
     getMinHeight(){
@@ -28,6 +36,34 @@ Page({
         this.setData({
             minHeight: windowHeight - 574/2 - navBarHeight
         })
+    },
+    async getPlace(){
+        const { success, data, msg } = await aigcServer.get_place();
+        if(success){
+            this.setData({
+                placeList: data || [],
+                activePlace: data[0] || {}
+            })
+        } else {
+            wx.showToast({
+              title: msg,
+              icon: 'none'
+            })
+        }
+    },
+    async getStyle(){
+        const { success, data, msg } = await aigcServer.get_style();
+        if(success){
+            this.setData({
+                styleList: data || [],
+                activeStyle: data[0] || {}
+            })
+        } else {
+            wx.showToast({
+              title: msg,
+              icon: 'none'
+            })
+        }
     },
     switchTap(e){
         const { currentTarget: { dataset: { type } } } = e;
@@ -38,6 +74,18 @@ Page({
     login(){
         navigateTo({
             router: 'Login'
+        })
+    },
+    switchPlace(e){
+        const { currentTarget: { dataset: { item } } } = e;
+        this.setData({
+            activePlace: item
+        })
+    },
+    switchStyle(e){
+        const { currentTarget: { dataset: { item } } } = e;
+        this.setData({
+            activeStyle: item
         })
     },
     uploadImage(){
@@ -83,6 +131,7 @@ Page({
         }
         const FormData = require('../../utils/formData');
         let formData = new FormData();
+        formData.append("openid", wx.getStorageSync('openid'));
         formData.appendFile("image", previewImgUrl);
         let params = formData.getData();
         this.setData({

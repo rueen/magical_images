@@ -1,10 +1,10 @@
 import routeMap from './routeMap';
 
-const visitorRouter = ['Login', 'Index', 'Works', 'WorksDetail', 'Account']; // 游客可访问
+const visitorRouter = ['Login', 'Index', 'Works', 'WorksDetail', 'Account', 'Protocol', 'Policy']; // 游客可访问
 
 const stopVisitor = (router) => {
-  const token = wx.getStorageSync('token');
-  if(visitorRouter.indexOf(router) < 0 && !token){
+  const openid = wx.getStorageSync('openid');
+  if(visitorRouter.indexOf(router) < 0 && !openid){
     // 禁止游客访问
     navigateTo({
       router: 'Login'

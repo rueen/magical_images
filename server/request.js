@@ -10,7 +10,9 @@ const request = async (
         }
         wx.request({
             url: `${config.baseURL}${url}`,
-            data,
+            data: Object.assign(data, {
+                openid: wx.getStorageSync('openid')
+            }),
             method,
             ...extra,
             success(res) {
