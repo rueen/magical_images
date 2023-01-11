@@ -10,7 +10,9 @@ App({
     },
     onShow(){
         // 获取剩余次数
-        this.getLeftTimes();
+        if(wx.getStorageSync('openid')){
+            this.getLeftTimes();
+        }
     },
     async getLeftTimes(){
         const { success, data, msg } = await usersServer.left_times();

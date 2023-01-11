@@ -63,6 +63,7 @@ Page({
                         icon: 'success'
                     })
                     wx.setStorageSync('openid', data.openid);
+                    await app.getLeftTimes();
                     let rememberRouter = wx.getStorageSync('rememberRouter');
                     app.pages.get(rememberRouter) && app.pages.get(rememberRouter).refresh();
                     // 原路返回

@@ -30,6 +30,12 @@ Page({
             leftTimes: wx.getStorageSync('leftTimes')
         })
     },
+    refresh(){
+        this.setData({
+            isLogin: !!wx.getStorageSync('openid'),
+            leftTimes: wx.getStorageSync('leftTimes')
+        })
+    },
     getMinHeight(){
         const windowHeight = globalData.windowHeight;
         const navBarHeight = globalData.navBarHeight;

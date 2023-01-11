@@ -72,16 +72,22 @@
     </view>
     <view class="drawBtnWrap">
         <button
-            loading="{{isLoading}}"
             class="drawBtn"
-            bindtap="draw"
-            wx:if="{{leftTimes > 0}}"
+            wx:if="{{!isLogin}}"
+            bindtap="login"
         >AI一键作画</button>
-        <button
-            loading="{{isLoading}}"
-            class="drawBtn"
-            wx:else
-        >创作机会已用完</button>
+        <block wx:else>
+            <button
+                loading="{{isLoading}}"
+                class="drawBtn"
+                bindtap="draw"
+                wx:if="{{leftTimes > 0}}"
+            >AI一键作画</button>
+            <button
+                class="drawBtn"
+                wx:else
+            >创作机会已用完</button>
+        </block>
     </view>
 </view>
 <shadow></shadow>
