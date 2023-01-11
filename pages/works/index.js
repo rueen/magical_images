@@ -2,6 +2,7 @@
 import { navigateTo } from '../../utils/navigate';
 const { globalData } = getApp();
 import { usersServer } from '../../server/index';
+const app = getApp();
 
 Page({
 
@@ -66,4 +67,16 @@ Page({
             router: 'WorksDetail'
         })
     },
+    /**
+     * 用户点击右上角分享
+     */
+    onShareAppMessage() {
+        app.addTimes();
+        
+        return {
+            title: '分享标题',
+            path: 'pages/index/index',
+            imageUrl: ''
+        }
+    }
 })

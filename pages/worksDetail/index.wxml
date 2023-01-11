@@ -1,20 +1,24 @@
 <!--pages/worksDetail/index.wxml-->
 <view class="container" style="min-height: {{minHeight}}px;">
-  <view class="posterPreview">
-    <image src="https://wenxin.baidu.com/younger/file/selected/C2A618A863EDA3255B8F05D822176F55" class="poster" mode="aspectFill"></image>
-  </view>
-  <view class="locationList">
-    <view class="locationItem">
-      <icon name="beach" size="32rpx" color="{{location === 'beach' ? '#F5F5F5' : '#585FCC'}}" />
-      <text class="locationText">海滩</text>
+    <!-- <view class="posterPreview">
+        <image src="https://wenxin.baidu.com/younger/file/selected/C2A618A863EDA3255B8F05D822176F55" class="poster" mode="aspectFill"></image>
+    </view> -->
+    <!-- <view class="locationList">
+        <view class="locationItem">
+            <icon name="beach" size="32rpx" color="{{location === 'beach' ? '#F5F5F5' : '#585FCC'}}" />
+            <text class="locationText">海滩</text>
+        </view>
+        <view class="locationItem">
+            <icon name="woods" size="32rpx" color="{{location === 'woods' ? '#F5F5F5' : '#585FCC'}}" />
+            <text class="locationText">山林</text>
+        </view>
+    </view> -->
+    <view class="canvasWrap">
+        <customCanvas width="660" height="880" elements="{{elements}}" wx:if="{{isShowCanvas}}" bind:onCreated="onCreated"></customCanvas>
     </view>
-    <view class="locationItem">
-      <icon name="woods" size="32rpx" color="{{location === 'woods' ? '#F5F5F5' : '#585FCC'}}" />
-      <text class="locationText">山林</text>
+    <view class="btnBox">
+        <view class="btnDownload">再来一张</view>
+        <view class="btnDownload">保存原图</view>
     </view>
-  </view>
-  <view class="btnBox">
-    <view class="btnShare">分享海报</view>
-    <view class="btnDownload">保存本地</view>
-  </view>
+    <view class="btnShare" bindtap="downloadPoster">保存海报</view>
 </view>

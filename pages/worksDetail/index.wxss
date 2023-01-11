@@ -9,6 +9,9 @@ page{
   margin-top: 20rpx;
   box-sizing: border-box;
 }
+.canvasWrap{
+    box-shadow: 0 0 10rpx 10rpx rgba(0,0,0,.05);
+}
 .posterPreview{
   width: 662rpx;
   height: 840rpx;
@@ -43,10 +46,11 @@ page{
   margin-left: 16rpx;
 }
 .btnBox{
-  margin-top: 78rpx;
+    display: flex;
+    margin-top: 30rpx;
 }
 .btnShare{
-  width: 100%;
+  flex: 1;
   height: 80rpx;
   background-color: #2A3243;
   font-size: 34rpx;
@@ -56,14 +60,14 @@ page{
   justify-content: center;
   align-items: center;
   border-radius: 16rpx;
+  margin-top: 20rpx;
 }
 .btnDownload{
-  width: 100%;
+  flex: 1;
   height: 80rpx;
   font-size: 30rpx;
   color: #2A3243;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 22rpx;
 }

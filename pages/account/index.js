@@ -2,6 +2,7 @@
 const { globalData } = getApp();
 import { navigateTo } from '../../utils/navigate';
 import { usersServer } from '../../server/index';
+const app = getApp();
 
 Page({
 
@@ -12,7 +13,8 @@ Page({
         minHeight: 0,
         isLogin: !!wx.getStorageSync('openid'),
         userInfo: wx.getStorageSync('userInfo'),
-        isEditNickname: false
+        isEditNickname: false,
+        leftTimes: wx.getStorageSync('leftTimes'),
     },
 
     /**
@@ -29,7 +31,8 @@ Page({
     refresh(){
         const openid = wx.getStorageSync('openid');
         this.setData({
-            isLogin: !!openid
+            isLogin: !!openid,
+            leftTimes: wx.getStorageSync('leftTimes'),
         })
         if(!!openid){
             // 获取用户详情
@@ -116,6 +119,21 @@ Page({
               title: msg,
               icon: 'none'
             })
+        }
+    },
+    /**
+     * 用户点击右上角分享
+     */
+    async onShareAppMessage() {
+        await app.addTimes();
+        this.setData({
+            leftTimes: wx.getStorageSync('leftTimes')
+        })
+
+        return {
+            title: '分享标题',
+            path: 'pages/index/index',
+            imageUrl: ''
         }
     }
 })

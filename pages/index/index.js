@@ -2,6 +2,7 @@
 import { styleServer, aigcServer } from '../../server/index';
 const { globalData } = getApp();
 import { navigateTo } from '../../utils/navigate';
+const app = getApp();
 
 Page({
     data: {
@@ -15,7 +16,8 @@ Page({
         placeList: [],
         activePlace: null,
         styleList: [],
-        activeStyle: null
+        activeStyle: null,
+        leftTimes: wx.getStorageSync('leftTimes'),
     },
     onLoad(options) {
         this.getMinHeight();
@@ -24,7 +26,8 @@ Page({
     },
     onShow() {
         this.setData({
-            isLogin: !!wx.getStorageSync('openid')
+            isLogin: !!wx.getStorageSync('openid'),
+            leftTimes: wx.getStorageSync('leftTimes')
         })
     },
     getMinHeight(){
@@ -122,10 +125,13 @@ Page({
         this.setData({
             isLoading: true
         })
-        const { success, data, msg } = await aigcServer.model(params);
+        wx.showLoading({
+            title: '绘制中...',
+        })
+        const { success, msg } = await aigcServer.model(params);
         if(success){
-            this.setData({
-                drawImgUrl: data.img_url
+            navigateTo({
+                router: 'WorksDetail'
             })
         } else {
             wx.showToast({
@@ -158,10 +164,13 @@ Page({
         this.setData({
             isLoading: true
         })
-        const { success, data, msg } = await styleServer.gan(params);
+        wx.showLoading({
+            title: '绘制中...',
+        })
+        const { success, msg } = await styleServer.gan(params);
         if(success){
-            this.setData({
-                drawImgUrl: data.img_url
+            navigateTo({
+                router: 'WorksDetail'
             })
         } else {
             wx.showToast({
@@ -180,6 +189,18 @@ Page({
             this.drawAi();
         } else if(tapType === 'comic'){
             this.drawComic();
+        }
+    },
+    /**
+     * 用户点击右上角分享
+     */
+    onShareAppMessage() {
+        app.addTimes();
+        
+        return {
+            title: '分享标题',
+            path: 'pages/index/index',
+            imageUrl: ''
         }
     }
 })

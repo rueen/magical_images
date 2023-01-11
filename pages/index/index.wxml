@@ -34,7 +34,7 @@
     </view>
 </view>
 <view class="container" style="min-height: {{minHeight}}px;">
-    <view class="line"></view>
+    <view class="line" wx:if="{{tapType === 'ai'}}"></view>
     <view class="locationWrap" wx:if="{{tapType === 'ai'}}">
         <view class="choiceTitleWrap">
             <icon name="works" size="32rpx" color="#585FCC" />
@@ -75,7 +75,13 @@
             loading="{{isLoading}}"
             class="drawBtn"
             bindtap="draw"
+            wx:if="{{leftTimes > 30}}"
         >AI一键作画</button>
+        <button
+            loading="{{isLoading}}"
+            class="drawBtn"
+            wx:else
+        >创作机会已用完</button>
     </view>
 </view>
 <shadow></shadow>

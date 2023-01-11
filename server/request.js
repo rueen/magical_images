@@ -17,7 +17,7 @@ const request = async (
             ...extra,
             success(res) {
                 const { status, msg, data } = res.data;
-                if(`${status}` === '0014'){
+                if(`${status}` === '202'){
                     // 需要重新授权登录
                     navigateTo({
                         router: 'Login'

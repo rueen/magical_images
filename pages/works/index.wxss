@@ -49,7 +49,12 @@ page{
   justify-content: flex-end;
 }
 .loginBtnWrap{
-    padding-top: 100rpx;
+    position: absolute;
+    bottom: 50rpx;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 .loginBtn{
     width: 300rpx;

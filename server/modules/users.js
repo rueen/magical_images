@@ -39,7 +39,15 @@ const usersServer = {
     // 获取作品列表
     async opus(data = {}){
         return await request({ url: `/users/opus/`, data, method: 'POST' });
-    }
+    },
+    // 剩余创作次数
+    async left_times(data = {}){
+        return await request({ url: `/users/left_times/`, data, method: 'POST' });
+    },
+    // 分享成功调用新增次数
+    async share(data = {}){
+        return await request({ url: `/users/share/`, data, method: 'POST' });
+    },
 }
 
 export default usersServer;

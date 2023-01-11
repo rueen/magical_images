@@ -29,7 +29,7 @@
     </view>
   </view>
   <view class="times">
-    <view class="timesText1">剩余可创作数：2</view>
+    <view class="timesText1">剩余可创作数：{{leftTimes}}</view>
     <view class="timesText2">分享一张AI绘图可增加3次创作机会</view>
     <button class="shareBtn" type="primary" open-type="share">立即分享</button>
   </view>

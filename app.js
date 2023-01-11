@@ -1,11 +1,35 @@
 // app.js
 import PM from '/utils/page.js';
 let pages = new PM();
+import { usersServer } from '/server/index';
 
 App({
     onLaunch() {
         this.pages = pages;
         this.getGlobalDataInfo();
+    },
+    onShow(){
+        // 获取剩余次数
+        this.getLeftTimes();
+    },
+    async getLeftTimes(){
+        const { success, data, msg } = await usersServer.left_times();
+
+        if(success){
+            wx.setStorageSync('leftTimes', data.count);
+        } else {
+            wx.showToast({
+              title: msg,
+              icon: 'none'
+            })
+        }
+    },
+    // 新增分享次数
+    async addTimes(){
+        const { success, data } = await usersServer.share();
+        if(success){
+            wx.setStorageSync('leftTimes', data.count);
+        }
     },
     globalData: {
         statusBarHeight: 0, // 状态栏高度
