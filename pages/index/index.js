@@ -18,16 +18,13 @@ Page({
         activeStyle: null
     },
     onLoad(options) {
-        this.getMinHeight()
+        this.getMinHeight();
+        this.getPlace();
+        this.getStyle();
     },
     onShow() {
         this.setData({
             isLogin: !!wx.getStorageSync('openid')
-        }, () => {
-            if(this.data.isLogin){
-                this.getPlace();
-                this.getStyle();
-            }
         })
     },
     getMinHeight(){

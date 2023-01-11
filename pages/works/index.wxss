@@ -48,3 +48,15 @@ page{
   display: flex;
   justify-content: flex-end;
 }
+.loginBtnWrap{
+    padding-top: 100rpx;
+}
+.loginBtn{
+    width: 300rpx;
+}
+.noData{
+    color: #999;
+    text-align: center;
+    font-size: 24rpx;
+    margin-top: 50rpx;
+}

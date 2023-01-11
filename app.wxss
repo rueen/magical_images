@@ -16,5 +16,8 @@ button::after{
 button[type=primary]{
     background: #ED7447;
 }
+button[type=primary]:active{
+    background: #ED7447;
+}
 
 
