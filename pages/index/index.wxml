@@ -75,7 +75,7 @@
             loading="{{isLoading}}"
             class="drawBtn"
             bindtap="draw"
-            wx:if="{{leftTimes > 30}}"
+            wx:if="{{leftTimes > 0}}"
         >AI一键作画</button>
         <button
             loading="{{isLoading}}"

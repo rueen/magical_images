@@ -5,7 +5,7 @@
     <block wx:if="{{isLogin}}">
         <view class="worksTitle">我的作品</view>
         <view class="worksList" wx:if="{{list && list.length}}">
-            <view class="worksItem" wx:for="{{list}}" wx:key="index" bindtap="openDetail">
+            <view class="worksItem" wx:for="{{list}}" wx:key="index" bindtap="openDetail" data-item="{{item}}">
                 <view class="worksInner">
                     <view class="thumbnailBox">
                     <image mode="aspectFill" src="{{item.pre_url}}" class="thumbnail"></image>

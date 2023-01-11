@@ -3,6 +3,7 @@ const { globalData } = getApp();
 import { usersServer } from '../../server/index';
 import lib from "../../utils/lib";
 const app = getApp();
+import { switchTab } from '../../utils/navigate';
 
 Page({
 
@@ -11,10 +12,11 @@ Page({
      */
     data: {
         minHeight: 0,
+        id: null,
         isShowCanvas: false,
         elements: [],
         poster: '', // 生成的海报图
-        userInfo: wx.getStorageSync('userInfo'),
+        info: {},
     },
 
     /**
@@ -22,7 +24,14 @@ Page({
      */
     onLoad(options) {
         this.getMinHeight();
-        this.draw();
+        const dataObj = JSON.parse(options.dataObj || '{}');
+        if(dataObj.id != null){
+            this.setData({
+                id: dataObj.id
+            }, () => {
+                this.draw();
+            });
+        }
     },
 
     getMinHeight(){
@@ -38,29 +47,34 @@ Page({
             title: '绘制中...',
         })
         Promise.all([
-            this.getUserInfo()
+            this.getDetail()
         ]).then(res => {
             const elements = [...this.data.elements];
-            const { userInfo } = this.data;
+            const { info } = this.data;
             // 图片
-            elements.push({
-                type: 'image',
-                src: 'https://wenxin.baidu.com/younger/file/selected/C2A618A863EDA3255B8F05D822176F55',
-                width: 620,
-                height: 680,
-                x: 20,
-                y: 20,
-                radius: 8
-            })
+            if(info.background){
+                elements.push({
+                    type: 'image',
+                    src: info.background,
+                    width: 620,
+                    height: 680,
+                    x: 20,
+                    y: 20,
+                    radius: 8
+                })
+            }
             // 二维码
-            elements.push({
-                type: 'image',
-                src: 'https://mmbiz.qpic.cn/mmbiz_jpg/cVgP5bCElFhNSicyHulVLuDYQFPZLsIAx9DEg1jNJQ36ATINgqMDpicO1HNAwffYIMC8RkOXXk02uw3H5JY9bbGQ/0?wx_fmt=jpeg',
-                width: 140,
-                height: 140,
-                x: 20,
-                y: 720
-            })
+            if(info.qr_code){
+                elements.push({
+                    type: 'image',
+                    src: info.qr_code,
+                    width: 140,
+                    height: 140,
+                    x: 20,
+                    y: 720
+                })
+            }
+            
             // 文案
             elements.push({
                 type: 'text',
@@ -74,78 +88,87 @@ Page({
                 y: 745
             })
             // 昵称
-            const len = userInfo.nick_name.length;
-            elements.push({
-                type: 'text',
-                content: `— ${userInfo.nick_name}`,
-                maxLine: 1, // 最大行数 超出部分...
-                color: '#999', // 文字颜色 默认 '#333'
-                fontSize: 24, // 文字大小
-                maxWidth: 350, // 最大宽度
-                height: 30,
-                x: 600 - len * 15,
-                y: 840
-            })
+            if(info.nick_name){
+                const len = info.nick_name.length;
+                elements.push({
+                    type: 'text',
+                    content: `— ${info.nick_name}`,
+                    maxLine: 1, // 最大行数 超出部分...
+                    color: '#999', // 文字颜色 默认 '#333'
+                    fontSize: 24, // 文字大小
+                    maxWidth: 350, // 最大宽度
+                    height: 30,
+                    x: 600 - len * 15,
+                    y: 840
+                })
+            }
+            
             // 标签1
-            elements.push({
-                type: 'image',
-                src: '../../image/tag_bg.png',
-                width: 140,
-                x: 480,
-                y: 620
-            })
-            elements.push({
-                type: 'text',
-                content: '动漫人像',
-                maxLine: 1, // 最大行数 超出部分...
-                color: '#585FCC', // 文字颜色 默认 '#333'
-                fontSize: 24, // 文字大小
-                maxWidth: 176, // 最大宽度
-                height: 64,
-                textAlign: 'center',
-                x: 550,
-                y: 653
-            })
+            if(info.model_type){
+                elements.push({
+                    type: 'image',
+                    src: '../../image/tag_bg.png',
+                    width: 140,
+                    x: 480,
+                    y: 620
+                })
+                elements.push({
+                    type: 'text',
+                    content: info.model_type,
+                    maxLine: 1, // 最大行数 超出部分...
+                    color: '#585FCC', // 文字颜色 默认 '#333'
+                    fontSize: 24, // 文字大小
+                    maxWidth: 176, // 最大宽度
+                    height: 64,
+                    textAlign: 'center',
+                    x: 550,
+                    y: 653
+                })
+            }
             // 标签2
-            elements.push({
-                type: 'image',
-                src: '../../image/tag_bg.png',
-                width: 140,
-                x: 330,
-                y: 620
-            })
-            elements.push({
-                type: 'text',
-                content: '动漫风',
-                maxLine: 1, // 最大行数 超出部分...
-                color: '#585FCC', // 文字颜色 默认 '#333'
-                fontSize: 24, // 文字大小
-                maxWidth: 176, // 最大宽度
-                height: 64,
-                textAlign: 'center',
-                x: 400,
-                y: 653
-            })
+            if(info.place){
+                elements.push({
+                    type: 'image',
+                    src: '../../image/tag_bg.png',
+                    width: 140,
+                    x: 330,
+                    y: 620
+                })
+                elements.push({
+                    type: 'text',
+                    content: info.place,
+                    maxLine: 1, // 最大行数 超出部分...
+                    color: '#585FCC', // 文字颜色 默认 '#333'
+                    fontSize: 24, // 文字大小
+                    maxWidth: 176, // 最大宽度
+                    height: 64,
+                    textAlign: 'center',
+                    x: 400,
+                    y: 653
+                })
+            }
             // 标签3
-            elements.push({
-                type: 'image',
-                src: '../../image/tag_bg.png',
-                width: 140,
-                x: 180,
-                y: 620
-            })
-            elements.push({
-                type: 'text',
-                content: '海滩',
-                maxLine: 1, // 最大行数 超出部分...
-                color: '#585FCC', // 文字颜色 默认 '#333'
-                fontSize: 24, // 文字大小
-                maxWidth: 176, // 最大宽度
-                height: 64,
-                textAlign: 'center',
-                x: 250,
-                y: 653
-            })
+            if(info.style){
+                elements.push({
+                    type: 'image',
+                    src: '../../image/tag_bg.png',
+                    width: 140,
+                    x: 180,
+                    y: 620
+                })
+                elements.push({
+                    type: 'text',
+                    content: info.style,
+                    maxLine: 1, // 最大行数 超出部分...
+                    color: '#585FCC', // 文字颜色 默认 '#333'
+                    fontSize: 24, // 文字大小
+                    maxWidth: 176, // 最大宽度
+                    height: 64,
+                    textAlign: 'center',
+                    x: 250,
+                    y: 653
+                })
+            }
 
             this.setData({
                 elements,
@@ -157,11 +180,19 @@ Page({
         })
     },
 
-    async getUserInfo(){
-        const { success, data } = await usersServer.detail();
+    async getDetail(){
+        const { id } = this.data;
+        const { success, data, msg } = await usersServer.share_poster({
+            id
+        });
         if(success){
             this.setData({
-                userInfo: data || {}
+                info: data || {}
+            })
+        } else {
+            wx.showToast({
+              title: msg,
+              icon: 'none'
             })
         }
     },
@@ -191,6 +222,29 @@ Page({
                     duration: 2000
                 })
             })
+    },
+
+    downloadOriginal(){
+        const { info } = this.data;
+        if(!info.background){
+            wx.showToast({
+                title: '原图加载中，请稍后',
+                icon: 'none'
+            })
+            return;
+        }
+        lib.saveImage([info.background])
+            .then(() => {
+                wx.showToast({
+                    title: '保存成功',
+                    icon: 'success',
+                    duration: 2000
+                })
+            })
+    },
+
+    goHome(){
+        switchTab('Index')
     },
 
     /**

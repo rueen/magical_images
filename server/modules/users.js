@@ -48,6 +48,10 @@ const usersServer = {
     async share(data = {}){
         return await request({ url: `/users/share/`, data, method: 'POST' });
     },
+    // 海报详情
+    async share_poster(data = {}){
+        return await request({ url: `/users/share_poster/`, data, method: 'POST' });
+    },
 }
 
 export default usersServer;

@@ -17,8 +17,8 @@
         <customCanvas width="660" height="880" elements="{{elements}}" wx:if="{{isShowCanvas}}" bind:onCreated="onCreated"></customCanvas>
     </view>
     <view class="btnBox">
-        <view class="btnDownload">再来一张</view>
-        <view class="btnDownload">保存原图</view>
+        <view class="btnDownload" bindtap="goHome">再来一张</view>
+        <view class="btnDownload" bindtap="downloadOriginal">保存原图</view>
     </view>
     <view class="btnShare" bindtap="downloadPoster">保存海报</view>
 </view>

@@ -62,9 +62,13 @@ Page({
             })
         }
     },
-    openDetail(){
+    openDetail(e){
+        const { currentTarget: { dataset: {item} } } = e;
         navigateTo({
-            router: 'WorksDetail'
+            router: 'WorksDetail',
+            extras: {
+                id: item.id
+            }
         })
     },
     /**

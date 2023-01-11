@@ -128,10 +128,13 @@ Page({
         wx.showLoading({
             title: '绘制中...',
         })
-        const { success, msg } = await aigcServer.model(params);
+        const { success, data, msg } = await aigcServer.model(params);
         if(success){
             navigateTo({
-                router: 'WorksDetail'
+                router: 'WorksDetail',
+                extras: {
+                    id: data.id
+                }
             })
         } else {
             wx.showToast({
@@ -167,10 +170,13 @@ Page({
         wx.showLoading({
             title: '绘制中...',
         })
-        const { success, msg } = await styleServer.gan(params);
+        const { success, data, msg } = await styleServer.gan(params);
         if(success){
             navigateTo({
-                router: 'WorksDetail'
+                router: 'WorksDetail',
+                extras: {
+                    id: data.id
+                }
             })
         } else {
             wx.showToast({
