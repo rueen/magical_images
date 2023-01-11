@@ -100,7 +100,7 @@ Page({
         })
     },
     async drawAi(){
-        const { previewImgUrl, isLoading } = this.data;
+        const { previewImgUrl, isLoading, activePlace, activeStyle } = this.data;
         if(isLoading){
             return;
         }
@@ -112,6 +112,30 @@ Page({
             })              
             return;
         }
+        const FormData = require('../../utils/formData');
+        let formData = new FormData();
+        formData.append("openid", wx.getStorageSync('openid'));
+        formData.append("prompt_img2img", activeStyle.comment); // 风格
+        formData.append("prompt_inpainting", activePlace.comment); // 地点
+        formData.appendFile("img", previewImgUrl);
+        let params = formData.getData();
+        this.setData({
+            isLoading: true
+        })
+        const { success, data, msg } = await aigcServer.model(params);
+        if(success){
+            this.setData({
+                drawImgUrl: data.img_url
+            })
+        } else {
+            wx.showToast({
+                title: msg,
+                icon: 'none'
+            })
+        }
+        this.setData({
+            isLoading: false
+        })
     },
     async drawComic(){
         const { previewImgUrl, isLoading } = this.data;

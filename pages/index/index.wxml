@@ -42,7 +42,7 @@
         </view>
         <view class="locationList">
             <view class="locationItem {{activePlace.id === item.id ? 'active' : ''}}" wx:for="{{placeList}}" wx:key="id" bindtap="switchPlace" data-item="{{item}}">
-                <icon name="beach" size="32rpx" color="{{activePlace.id === item.id ? '#F5F5F5' : '#585FCC'}}" />
+                <image class="locationIcon" src="{{activePlace.id === item.id ? item.checked_urls : item.urls}}" mode="aspectFit"></image>
                 <text class="locationText">{{item.name}}</text>
             </view>
         </view>

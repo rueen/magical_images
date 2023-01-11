@@ -19,12 +19,15 @@ Page({
      */
     onLoad(options) {
         this.getMinHeight();
-        this.getList();
     },
 
     onShow() {
         this.setData({
             isLogin: !!wx.getStorageSync('openid')
+        }, () => {
+            if(this.data.isLogin){
+                this.getList();
+            }
         })
     },
 

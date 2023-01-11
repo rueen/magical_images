@@ -1,4 +1,5 @@
 <!--pages/works/index.wxml-->
+<wxs src="../../utils/filters.wxs" module="filters" />
 <nav></nav>
 <view class="container" style="min-height: {{minHeight}}px;">
     <block wx:if="{{isLogin}}">
@@ -7,9 +8,9 @@
             <view class="worksItem" wx:for="{{list}}" wx:key="index" bindtap="openDetail">
                 <view class="worksInner">
                     <view class="thumbnailBox">
-                    <image mode="aspectFill" src="https://wenxin.baidu.com/younger/file/selected/C23AE339CDDF0A763D7448F4DDAEF4DE?style=i_s" class="thumbnail"></image>
+                    <image mode="aspectFill" src="{{item.pre_url}}" class="thumbnail"></image>
                     </view>
-                    <view class="desc">2022-12-17</view>
+                    <view class="desc">{{item.create_time}}</view>
                 </view>
             </view>
         </view>

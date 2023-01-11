@@ -47,6 +47,10 @@ page{
 .locationItem.active{
   background-color: #585FCC;
 }
+.locationIcon{
+  width: 32rpx;
+  height: 32rpx;
+}
 .locationText{
   color: #585FCC;
   font-size: 28rpx;
