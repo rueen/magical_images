@@ -41,9 +41,9 @@ const request = async (
                 }
             },
             complete(){
-                setTimeout(() => {
-                    wx.hideLoading()
-                }, 6000)
+                // setTimeout(() => {
+                //     wx.hideLoading()
+                // }, 6000)
             }
         })
     })

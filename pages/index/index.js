@@ -102,8 +102,17 @@ Page({
             camera: 'back',
             success: (res) => {
                 const tempFiles = res.tempFiles[0];
-                this.setData({
-                    previewImgUrl: tempFiles.tempFilePath
+                // this.setData({
+                //     previewImgUrl: tempFiles.tempFilePath
+                // })
+                wx.cropImage({
+                    src: tempFiles.tempFilePath, // 图片路径
+                    cropScale: '4:3', // 裁剪比例
+                    success: (_res) => {
+                        this.setData({
+                            previewImgUrl: _res.tempFilePath
+                        })
+                    }
                 })
             }
         })

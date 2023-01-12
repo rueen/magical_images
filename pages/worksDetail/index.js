@@ -4,6 +4,7 @@ import { usersServer } from '../../server/index';
 import lib from "../../utils/lib";
 const app = getApp();
 import { switchTab } from '../../utils/navigate';
+import config from '../../config';
 
 Page({
 
@@ -183,7 +184,11 @@ Page({
     async getDetail(){
         const { id } = this.data;
         const { success, data, msg } = await usersServer.share_poster({
-            id
+            check_path: 'true',
+            id,
+            env_version: config.env_version,
+            "scene": "a=1",
+            "page": "",
         });
         if(success){
             this.setData({

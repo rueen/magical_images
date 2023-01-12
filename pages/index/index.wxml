@@ -62,7 +62,7 @@
             <view class="styleItemWrap {{activeStyle.id === item.id ? 'active' : ''}}" wx:for="{{styleList}}" wx:key="id" bindtap="switchStyle" data-item="{{item}}">
                 <view class="styleItem">
                 <view class="styleItemBgWrap">
-                    <image src="https://c-ssl.duitang.com/uploads/blog/201401/09/20140109192151_W3xrG.jpeg" mode="aspectFill" class="styleItemBg"></image>
+                    <image src="{{activeStyle.id === item.id ? item.checked_urls : item.urls}}" mode="aspectFill" class="styleItemBg"></image>
                 </view>
                 <view class="styleItemDesc">{{item.name}}</view>
                 </view>
