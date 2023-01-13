@@ -58,7 +58,7 @@ Page({
                     type: 'image',
                     src: info.background,
                     width: 620,
-                    height: 680,
+                    height: 620,
                     x: 20,
                     y: 20,
                     radius: 8
@@ -72,7 +72,7 @@ Page({
                     width: 140,
                     height: 140,
                     x: 20,
-                    y: 720
+                    y: 660
                 })
             }
             
@@ -83,10 +83,10 @@ Page({
                 maxLine: 2, // 最大行数 超出部分...
                 color: '#333', // 文字颜色 默认 '#333'
                 fontSize: 24, // 文字大小
-                maxWidth: 350, // 最大宽度
+                maxWidth: 330, // 最大宽度
                 height: 40,
-                x: 180,
-                y: 745
+                x: 220,
+                y: 690
             })
             // 昵称
             if(info.nick_name){
@@ -100,18 +100,21 @@ Page({
                     maxWidth: 350, // 最大宽度
                     height: 30,
                     x: 600 - len * 15,
-                    y: 840
+                    y: 780
                 })
             }
             
             // 标签1
+            let x1 = 480;
+            let x2 = 480;
+            let x3 = 480;
             if(info.model_type){
                 elements.push({
                     type: 'image',
                     src: '../../image/tag_bg.png',
                     width: 140,
-                    x: 480,
-                    y: 620
+                    x: x1,
+                    y: 560
                 })
                 elements.push({
                     type: 'text',
@@ -122,9 +125,11 @@ Page({
                     maxWidth: 176, // 最大宽度
                     height: 64,
                     textAlign: 'center',
-                    x: 550,
-                    y: 653
+                    x: x1 + 70,
+                    y: 593
                 })
+                x2 = x1 - 150;
+                x3 = x2;
             }
             // 标签2
             if(info.place){
@@ -132,8 +137,8 @@ Page({
                     type: 'image',
                     src: '../../image/tag_bg.png',
                     width: 140,
-                    x: 330,
-                    y: 620
+                    x: x2,
+                    y: 560
                 })
                 elements.push({
                     type: 'text',
@@ -144,9 +149,10 @@ Page({
                     maxWidth: 176, // 最大宽度
                     height: 64,
                     textAlign: 'center',
-                    x: 400,
-                    y: 653
+                    x: x2 + 70,
+                    y: 593
                 })
+                x3 = x2 - 150;
             }
             // 标签3
             if(info.style){
@@ -154,8 +160,8 @@ Page({
                     type: 'image',
                     src: '../../image/tag_bg.png',
                     width: 140,
-                    x: 180,
-                    y: 620
+                    x: x3,
+                    y: 560
                 })
                 elements.push({
                     type: 'text',
@@ -166,8 +172,8 @@ Page({
                     maxWidth: 176, // 最大宽度
                     height: 64,
                     textAlign: 'center',
-                    x: 250,
-                    y: 653
+                    x: x3 + 70,
+                    y: 593
                 })
             }
 

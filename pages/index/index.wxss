@@ -211,7 +211,7 @@ page{
 }
 .drawPreviewWrap{
   width: 586rpx;
-  height: 532rpx;
+  height: 586rpx;
   border-radius: 50rpx;
   overflow: hidden;
   margin-top: 24rpx;
@@ -219,7 +219,7 @@ page{
 }
 .drawPreview{
   width: 586rpx;
-  height: 532rpx;
+  height: 586rpx;
 }
 .drawPreviewText{
   position: absolute;

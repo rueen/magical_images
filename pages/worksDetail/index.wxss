@@ -10,40 +10,9 @@ page{
   box-sizing: border-box;
 }
 .canvasWrap{
+    width: 660rpx;
+    height: 820rpx;
     box-shadow: 0 0 10rpx 10rpx rgba(0,0,0,.05);
-}
-.posterPreview{
-  width: 662rpx;
-  height: 840rpx;
-  border-radius: 50rpx;
-  overflow: hidden;
-}
-.poster{
-  width: 662rpx;
-  height: 840rpx;
-}
-.locationList{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 40rpx;
-}
-.locationItem{
-  width: 176rpx;
-  height: 64rpx;
-  border-radius: 32rpx;
-  background-color: #F5F5F5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 24rpx;
-  margin-bottom: 20rpx;
-}
-.locationText{
-  color: #585FCC;
-  font-size: 28rpx;
-  font-weight: 500;
-  margin-left: 16rpx;
 }
 .btnBox{
     display: flex;

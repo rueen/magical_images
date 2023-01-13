@@ -107,7 +107,7 @@ Page({
                 // })
                 wx.cropImage({
                     src: tempFiles.tempFilePath, // 图片路径
-                    cropScale: '4:3', // 裁剪比例
+                    cropScale: '1:1', // 裁剪比例
                     success: (_res) => {
                         this.setData({
                             previewImgUrl: _res.tempFilePath
